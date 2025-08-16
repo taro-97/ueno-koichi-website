@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>詳細マイルストーン | 国家建国への道程 2026-2042</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#D4AF37',
+secondary: '#1A1A1A'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Anton&family=Impact&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+body {
+font-family: 'Montserrat', sans-serif;
+background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #1A1A1A 100%);
+color: #ffffff;
+overflow-x: hidden;
+}
+html {
+scroll-padding-top: 160px; /* ヘッダー(80px) + ナビ(60px) + マージン(20px) */
+}
+
+/* レスポンシブ対応: モバイルでのスクロールパディング調整 */
+@media (max-width: 768px) {
+html {
+scroll-padding-top: 140px; /* モバイルではやや小さめに */
+}
+}
+.particles-bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 1;
+}
+.particle {
+position: absolute;
+width: 3px;
+height: 3px;
+background: #D4AF37;
+border-radius: 50%;
+animation: float 6s ease-in-out infinite;
+box-shadow: 0 0 10px #D4AF37;
+}
+@keyframes float {
+0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+25% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+50% { transform: translateY(-40px) translateX(-5px); opacity: 1; }
+75% { transform: translateY(-20px) translateX(15px); opacity: 0.6; }
+}
+.glow-text {
+text-shadow: 0 0 20px #D4AF37, 0 0 40px #D4AF37, 0 0 60px #D4AF37;
+}
+.phase-card {
+background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%);
+border: 1px solid rgba(212, 175, 55, 0.3);
+backdrop-filter: blur(10px);
+transition: all 0.3s ease;
+}
+.phase-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+border-color: #D4AF37;
+}
+.timeline-nav {
+background: linear-gradient(90deg, rgba(26, 26, 26, 0.95) 0%, rgba(42, 42, 42, 0.95) 100%);
+backdrop-filter: blur(15px);
+border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+.year-button {
+transition: all 0.3s ease;
+border: 1px solid transparent;
+}
+.year-button.active {
+background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+color: #1A1A1A;
+font-weight: 700;
+box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+.year-button:hover {
+border-color: #D4AF37;
+color: #D4AF37;
+}
+.progress-bar {
+background: linear-gradient(90deg, #D4AF37 0%, #0080FF 50%, #DC143C 100%);
+height: 6px;
+border-radius: 3px;
+position: relative;
+overflow: hidden;
+}
+.progress-bar::after {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+0% { left: -100%; }
+100% { left: 100%; }
+}
+.cta-glow {
+background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+@keyframes pulse-glow {
+from { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+to { box-shadow: 0 0 50px rgba(212, 175, 55, 0.9); }
+}
+.countdown-timer {
+background: linear-gradient(135deg, #DC143C 0%, #B91C3C 100%);
+animation: urgent-pulse 1s ease-in-out infinite alternate;
+}
+@keyframes urgent-pulse {
+from { transform: scale(1); }
+to { transform: scale(1.02); }
+}
+.milestone-year {
+font-family: 'Impact', 'Anton', sans-serif;
+font-size: 8rem;
+line-height: 1;
+background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+.section-divider {
+height: 2px;
+background: linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%);
+margin: 4rem 0;
+}
+@media (max-width: 768px) {
+.milestone-year {
+font-size: 4rem;
+}
+}
+</style>
+</head>
+<body>
+<div class="particles-bg" id="particles"></div>
+<header class="timeline-nav fixed top-0 left-0 right-0 z-50 px-8 py-4">
+<div class="flex items-center justify-between max-w-7xl mx-auto">
+<a href="上野光一---ヒーローとビジョン.html" class="flex items-center text-white hover:text-primary transition-colors duration-300">
+<i class="ri-arrow-left-line text-xl mr-2"></i>
+<span class="text-sm font-medium">戻る</span>
+</a>
+<h1 class="text-xl font-bold text-center flex-1" style="font-family: 'Playfair Display', serif;">
+VISION MILESTONE 2026-2042
+</h1>
+<div class="w-16"></div>
+</div>
+</header>
+<section class="min-h-screen flex flex-col items-center justify-center relative pt-20 pb-16">
+<div class="relative z-10 text-center px-8 max-w-6xl mx-auto">
+<h2 class="text-6xl md:text-8xl font-bold mb-8 glow-text" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+国家建国への道程
+</h2>
+<p class="text-2xl md:text-3xl font-medium text-gray-300 mb-6">
+歴史を変える17年間の挑戦
+</p>
+<p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+Beyourself Nation構想の実現に向けた具体的なロードマップ。<br>
+2026年から2042年まで、各段階での目標と取り組みを詳細に解説します。
+</p>
+
+</div>
+</section>
+<nav class="sticky top-20 z-40 px-8 py-4 timeline-nav">
+<div class="max-w-7xl mx-auto">
+<div class="flex overflow-x-auto space-x-4 pb-2" id="yearNavigation">
+<button class="year-button px-4 py-2 rounded-button whitespace-nowrap text-sm font-medium" data-year="2026">2026</button>
+<button class="year-button px-4 py-2 rounded-button whitespace-nowrap text-sm font-medium" data-year="2030">2030</button>
+<button class="year-button px-4 py-2 rounded-button whitespace-nowrap text-sm font-medium" data-year="2035">2035</button>
+<button class="year-button px-4 py-2 rounded-button whitespace-nowrap text-sm font-medium" data-year="2042">2042</button>
+</div>
+</div>
+</nav>
+<main class="relative z-10 px-8 py-16">
+<div class="max-w-7xl mx-auto space-y-32">
+<section id="milestone-2026" class="milestone-section">
+<div class="text-center mb-16">
+<div class="milestone-year">2026</div>
+<h3 class="text-3xl font-bold text-primary mb-4">創業フェーズ - 基盤構築</h3>
+<p class="text-xl text-gray-300">ビジョン実現への第一歩</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="phase-card p-8 rounded-xl">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-500 rounded-full mb-6 mx-auto">
+<i class="ri-rocket-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">年商 5億円達成</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400" style="width: 85%"></div>
+</div>
+<p class="text-gray-300 mb-4">現在の事業を拡大し、安定した収益基盤を構築</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• SNS運用代行事業の全国展開</li>
+<li>• 営業代行サービスの法人化</li>
+<li>• 新規事業領域への参入</li>
+</ul>
+</div>
+<div class="phase-card p-8 rounded-xl">
+<div class="w-16 h-16 flex items-center justify-center bg-green-500 rounded-full mb-6 mx-auto">
+<i class="ri-team-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">信頼できる仲間 100人</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-green-500 to-emerald-400" style="width: 65%"></div>
+</div>
+<p class="text-gray-300 mb-4">ビジョンを共有する仲間を集結</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 各分野の専門家をリクルート</li>
+<li>• 組織体制の整備と役割分担</li>
+<li>• 企業文化とビジョンの浸透</li>
+</ul>
+</div>
+<div class="phase-card p-8 rounded-xl">
+<div class="w-16 h-16 flex items-center justify-center bg-purple-500 rounded-full mb-6 mx-auto">
+<i class="ri-building-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">事業基盤完成</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-purple-500 to-pink-400" style="width: 70%"></div>
+</div>
+<p class="text-gray-300 mb-4">持続可能な事業モデルの確立</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 本社オフィスの設立</li>
+<li>• システムインフラの構築</li>
+<li>• 品質管理体制の確立</li>
+</ul>
+</div>
+</div>
+
+</section>
+<div class="section-divider"></div>
+<section id="milestone-2030" class="milestone-section">
+<div class="text-center mb-16">
+<div class="milestone-year">2030</div>
+<h3 class="text-3xl font-bold text-primary mb-4">拡大フェーズ - 国際展開</h3>
+<p class="text-xl text-gray-300">アジア市場への本格参入</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12 mb-12">
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(220, 20, 60, 0.3);">
+<div class="w-16 h-16 flex items-center justify-center bg-red-500 rounded-full mb-6">
+<i class="ri-global-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">アジア5カ国進出</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-red-500 to-pink-400" style="width: 40%"></div>
+</div>
+<p class="text-gray-300 mb-6">東南アジア市場での事業基盤構築</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">シンガポール</span>
+<span class="text-xs bg-green-500 px-2 py-1 rounded-full">完了</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">タイ</span>
+<span class="text-xs bg-yellow-500 px-2 py-1 rounded-full">進行中</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">ベトナム</span>
+<span class="text-xs bg-gray-500 px-2 py-1 rounded-full">計画中</span>
+</div>
+</div>
+</div>
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(220, 20, 60, 0.3);">
+<div class="w-16 h-16 flex items-center justify-center bg-orange-500 rounded-full mb-6">
+<i class="ri-line-chart-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">年商 50億円達成</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-orange-500 to-red-400" style="width: 30%"></div>
+</div>
+<p class="text-gray-300 mb-6">事業規模の飛躍的拡大</p>
+<div class="grid grid-cols-2 gap-4 text-center">
+<div>
+<div class="text-2xl font-bold text-primary">1,000+</div>
+<div class="text-xs text-gray-400">従業員数</div>
+</div>
+<div>
+<div class="text-2xl font-bold text-primary">15</div>
+<div class="text-xs text-gray-400">事業領域</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="section-divider"></div>
+<section id="milestone-2035" class="milestone-section">
+<div class="text-center mb-16">
+<div class="milestone-year">2035</div>
+<h3 class="text-3xl font-bold text-primary mb-4">社会貢献フェーズ - インフラ構築</h3>
+<p class="text-xl text-gray-300">医療・教育施設の建設開始</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12 mb-12">
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(16, 185, 129, 0.3);">
+<div class="w-16 h-16 flex items-center justify-center bg-emerald-500 rounded-full mb-6">
+<i class="ri-hospital-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">医療施設建設</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-emerald-500 to-green-400" style="width: 25%"></div>
+</div>
+<p class="text-gray-300 mb-6">アジア各国での総合病院建設プロジェクト</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 最新医療技術の導入</li>
+<li>• 現地医師の育成プログラム</li>
+<li>• 無料診療サービスの提供</li>
+<li>• 遠隔医療システムの構築</li>
+</ul>
+</div>
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(16, 185, 129, 0.3);">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-500 rounded-full mb-6">
+<i class="ri-school-line text-2xl text-white"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">教育機関設立</h4>
+<div class="progress-bar mb-4">
+<div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400" style="width: 20%"></div>
+</div>
+<p class="text-gray-300 mb-6">次世代リーダー育成のための学校建設</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 革新的教育カリキュラム</li>
+<li>• 国際交流プログラム</li>
+<li>• 奨学金制度の創設</li>
+<li>• オンライン教育プラットフォーム</li>
+</ul>
+</div>
+</div>
+
+</section>
+<div class="section-divider"></div>
+<section id="milestone-2042" class="milestone-section">
+<div class="text-center mb-16">
+<div class="milestone-year">2042</div>
+<h3 class="text-3xl font-bold text-primary mb-4">建国フェーズ - 新国家誕生</h3>
+<p class="text-xl text-gray-300">Beyourself Nation の実現</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8 mb-12">
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(212, 175, 55, 0.5);">
+<div class="w-16 h-16 flex items-center justify-center bg-primary rounded-full mb-6">
+<i class="ri-government-line text-2xl text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">国連承認獲得</h4>
+<p class="text-gray-300 mb-4">国際社会からの正式な国家承認</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 外交関係の構築</li>
+<li>• 国際条約への加盟</li>
+<li>• 大使館の設立</li>
+</ul>
+</div>
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(212, 175, 55, 0.5);">
+<div class="w-16 h-16 flex items-center justify-center bg-primary rounded-full mb-6">
+<i class="ri-building-2-line text-2xl text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">政府組織構築</h4>
+<p class="text-gray-300 mb-4">民主的で透明性の高い政治システム</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 憲法の制定</li>
+<li>• 議会制度の確立</li>
+<li>• 司法制度の整備</li>
+</ul>
+</div>
+<div class="phase-card p-8 rounded-xl" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%); border-color: rgba(212, 175, 55, 0.5);">
+<div class="w-16 h-16 flex items-center justify-center bg-primary rounded-full mb-6">
+<i class="ri-heart-line text-2xl text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold text-primary mb-4">理想社会実現</h4>
+<p class="text-gray-300 mb-4">一人ひとりが自分らしく生きられる社会</p>
+<ul class="text-sm text-gray-400 space-y-2">
+<li>• 個人の尊重と自由</li>
+<li>• 持続可能な経済システム</li>
+<li>• 平和と調和の実現</li>
+</ul>
+</div>
+</div>
+
+</section>
+</div>
+</main>
+<footer class="py-16 px-8 border-t border-gray-800">
+<div class="max-w-4xl mx-auto text-center">
+<p class="text-gray-400 mb-4">© 2025 上野光一 | Beyourself Nation Project</p>
+<p class="text-sm text-gray-500">歴史を変える挑戦は、今ここから始まる</p>
+</div>
+</footer>
+<script id="particles-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const particlesContainer = document.getElementById('particles');
+const particleCount = 50;
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.className = 'particle';
+particle.style.left = Math.random() * 100 + '%';
+particle.style.top = Math.random() * 100 + '%';
+particle.style.animationDelay = Math.random() * 6 + 's';
+particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+particlesContainer.appendChild(particle);
+}
+});
+</script>
+<script id="year-navigation">
+document.addEventListener('DOMContentLoaded', function() {
+const yearButtons = document.querySelectorAll('.year-button');
+const milestoneSection = document.querySelectorAll('.milestone-section');
+yearButtons.forEach(button => {
+button.addEventListener('click', function() {
+const year = this.dataset.year;
+const targetSection = document.getElementById(`milestone-${year}`);
+
+// アクティブボタンの状態更新
+yearButtons.forEach(btn => btn.classList.remove('active'));
+this.classList.add('active');
+
+if (targetSection) {
+// デバッグログ
+console.log(`Scrolling to milestone-${year}`);
+console.log('Target section:', targetSection);
+
+// 方法1: CSSのscroll-padding-topを活用したネイティブスクロール
+try {
+targetSection.scrollIntoView({
+behavior: 'smooth',
+block: 'start',
+inline: 'nearest'
+});
+console.log('Used scrollIntoView method');
+} catch (error) {
+// フォールバック: 手動計算によるスクロール
+console.log('Fallback to manual scroll calculation');
+
+// 実際の要素高さを動的に計算
+const header = document.querySelector('header');
+const nav = document.querySelector('nav.timeline-nav');
+const headerHeight = header ? header.offsetHeight : 80;
+const navHeight = nav ? nav.offsetHeight : 60;
+const dynamicOffset = headerHeight + navHeight + 20; // 20pxマージン
+
+console.log('Header height:', headerHeight);
+console.log('Nav height:', navHeight);
+console.log('Dynamic offset:', dynamicOffset);
+
+const elementPosition = targetSection.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - dynamicOffset;
+
+window.scrollTo({
+top: Math.max(0, offsetPosition),
+behavior: 'smooth'
+});
+}
+} else {
+console.error(`Section milestone-${year} not found`);
+// 利用可能なセクションを表示
+const availableSections = document.querySelectorAll('[id^="milestone-"]');
+console.log('Available sections:', Array.from(availableSections).map(s => s.id));
+}
+});
+});
+yearButtons[0].classList.add('active');
+});
+</script>
+<script id="scroll-animations">
+document.addEventListener('DOMContentLoaded', function() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, observerOptions);
+const animatedElements = document.querySelectorAll('.phase-card, .milestone-section');
+animatedElements.forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(30px)';
+el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(el);
+});
+});
+</script>
+</body>
+</html>
